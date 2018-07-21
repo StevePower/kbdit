@@ -1,0 +1,70 @@
+<%= render 'shared/errors', obj:@article %>
+
+	<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+  <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h2 class="panel-title">
+            <div id="error_explanation">
+              <<%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:
+            </h2>
+            <div class="panel-body">
+              <ul>
+                <% article.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <% end %>
+
+
+  
+  
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(@article, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <div class="form-group">
+        <div class="control-label col-md-12">
+         
+          
+        <%= form.label :title %>
+          </div>
+        <div class="col-md-12">
+        <%= form.text_field :title,class: "form-control",placeholder: "Title or article",autofocus:true, id: :article_title %>
+        </div>
+    </div>
+     </div>
+     </div>
+      <div class="form-group">
+        <div class="control-label col-md-12">
+        <%= form.label :description %>
+        </div>
+           <div class="col-md-12">
+            <%= form.text_area :description,rows:8,class: "form-control",placeholder: "Body of article", id: :article_description %>
+          </div>
+      </div>
+      
+      <div class="form-group">
+       <div class="col-sm-offset-0 col-md-10">
+        <%= form.submit class: "btn btn-primary btn-md" %>
+      </div>
+      </div>
+      <ul>
+        
+         <div class="form-group">
+     <div class="col-md-0 col-sm-offset-11">
+   <%= link_to "Back to articles", articles_path  %>
+     </div>
+      </ul>
+  <% end %>
+   <% end %>
+   
+  
+
